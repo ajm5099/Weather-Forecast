@@ -1,21 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-    
+
 </head>
+
 <body>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>  
-    <script src="script.js"></script>  
 
+    <!-- This is where teh city search will go -->
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Navbar</a>
+        </nav>
+    </div>
 
+    <div class="container">
+        <div class="row">
+            <div col-md-3 class="city-list col-md-3">
+                <form id="cities-form">
+                    <label for="city-input">Search</label>
+                    <input type="text" id="cities-input">
+                    <input id="add-city" type="submit" value="add a city">
+                    <div id="cities-view"></div>
+                </form>
+                <div id="city-list" class="list-group">
+                    <!-- <a class="list-group-item list-group-item-action" href="#list-item-1">Item 1</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">Item 2</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-3">Item 3</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-4">Item 4</a> -->
+                </div>
+            </div>
+            <div col-md-9>
+                <div col-md-12 class="current-weather">
+                    <div class="card">
+                        <div class="card-header" id="city-name">
+                        </div>
+                        <div class="card-body">
+                            <p id="temperature"></p>
+                            <p id="humidity"></p>
+                            <p id="windspeed"></p>
+                            <p id="uv"></p>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
 
+                <div col-md-12 class="five-day">
+                    <div class="row">
+                        <div col-md-12>
+                            <h1>5-Day Forecast:</h1>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Card 1 -->
+                        <!-- I need help making all of these cards fit onto one line, how do I resize the cards? -->
+                        <div class="card" style="width: 8rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                <a href="#" class="card-link">Card link</a>
+                                <a href="#" class="card-link">Another link</a>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="script.js"></script>
 </body>
+
 </html>

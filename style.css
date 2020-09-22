@@ -1,0 +1,22 @@
+.city-list {
+}
+
+.current-weather {
+    background: lime;
+}
+
+.five-day {
+    background: royalblue;
+}
+
+.card-header {
+    font-size: 30px;
+}
+
+p {
+    font-size: 20px;
+}
+
+.card {
+    margin: 1rem;
+}
