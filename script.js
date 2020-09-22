@@ -38,13 +38,13 @@ var currentDate = moment().format('MMMM Do YYYY, h:mm a');
         currentTemp = Math.floor((currentTemp-273.15)*1.8)+32;
         var tempP = $("<p>");
         tempP.text(currentTemp);
-        $("#temperature").append("Temperature: ", currentTemp, " F");
+        $("#temperature").append("Temperature: ", currentTemp, " °F");
         
         //TODO: Show the current humidity
         var currentHumid = response.main.humidity;
         var humidP = $("<p>");
         humidP.text(currentHumid);
-        $("#humidity").append("Humidity: ", currentHumid);
+        $("#humidity").append("Humidity: ", currentHumid, "%");
         
         //TODO: Show the wind speed
         var currentWind = response.wind.speed
@@ -98,18 +98,36 @@ $.ajax({
     var fiveHumid
     for (let days = 1; days < 6; days++) {
        var futureDate = (moment().add(days, 'days').format('M D YYYY').toString());
+       
        console.log(futureDate)
        console.log(fiveDayArray[days])
+
+
+       //TODO: build the card
+       let cardBuilder = $("<div class=\"card\" style=\"width: 8rem\">");
+       let  divMaker = $("<div class=\"card-body\">");
        //TODO: Assign a date to this day
+       let dateMaker = $("<h3>")
+       dateMaker.text(futureDate);
+
        
-       //TODO: Assign an icon to this day
+    //    //TODO: Assign an icon to this day
+       
+    //    let iconMaker = $("<div>")
 
        //TODO: Assign the temperature to this day
-
-       //TODO: Assign the humidity to thsi day
-    //    var humidP = $("<p>");
-    //    humidP.text(currentHumid);
-    //    $("#humidity").append("Humidity: ", currentHumid);
+       var fiveDayTemp = response.list[fiveDayArray[days]].main.temp;
+       fiveDayTemp = Math.floor((fiveDayTemp-273.15)*1.8)+32;
+       let tempMaker = $("<p>");
+       tempMaker.text("Temperature: " + fiveDayTemp + "°F");
+       //TODO: Assign the humidity to this day
+       var fiveDayHumid = response.list[fiveDayArray[days]].main.humidity;
+       let humidMaker = $("<P>")
+       humidMaker.text("Humidity: " + fiveDayHumid + "%")
+    
+    //     //TODO: Assign all elements to the div
+        divMaker.append(dateMaker, tempMaker, "<br>", humidMaker);
+        $("#five-day").append(divMaker);
     }
 })
 
