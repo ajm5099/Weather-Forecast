@@ -2,10 +2,8 @@
 // Global Variables
 //========================================================================
 var city = "";
-var cities = [];
 var lat = ""
 var long = ""
-var keyCounter = 0
 var currentDate = moment().format('MMMM Do YYYY, h:mm a');
 var apiKey = "907c23e4987ec932c6e00aa83a52deef"
 
@@ -143,10 +141,10 @@ function getCurrentWeather() {
 //this builds the searched cities list
 function renderCities() {
     $("#city-list").empty();
-    for (let i = 0; i < cities.length; i++) {
+    for (let i = 0; i < localStorage.length; i++) {
         var cityButton = $("<a>")
         cityButton.addClass("w-75 p-3 list-group-item list-group-item-action")
-        cityButton.attr("id", cities[i]);
+        cityButton.attr("id", localStorage[i]);
         cityButton.text(localStorage.getItem(i))
         $("#city-list").append(cityButton);
     }
@@ -157,28 +155,27 @@ $("#search-button").on("click", function(event) {
     event.preventDefault()
     var cityString = $("#searchfield").val().trim();
     city = cityString
-    localStorage.setItem(keyCounter, cityString)
-    keyCounter++;
-    cities.push(cityString)
-    console.log(cities);
+    localStorage.setItem(localStorage.length, cityString)
     renderCities();
     getCurrentWeather();
 })
 
 //Taking the inpput from the searched cities list and re executing the search
 $("#city-list").on("click", function(event) {
-    city = ($(this).attr('id'))
-    renderCities()
+    city = event.target.id
+    getCurrentWeather();
 })
 
 //using local storage to populate the page
 function renderMemory () {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < localStorage.length; i++) {
     var cityButton = $("<a>")
         cityButton.addClass("w-75 p-3 list-group-item list-group-item-action")
-        cityButton.attr("id", cities[i]);
+        cityButton.attr("id", localStorage[i]);
         cityButton.text(localStorage.getItem(i))
         $("#city-list").append(cityButton);
     }
 }
 renderMemory();
+city = localStorage[0];
+getCurrentWeather();
