@@ -14,9 +14,6 @@ var apiKey = "907c23e4987ec932c6e00aa83a52deef"
 //========================================================================
 // Current weather API call
 //========================================================================
-
-
-
 function getCurrentWeather() {
 
     var currentQueryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
@@ -36,9 +33,7 @@ function getCurrentWeather() {
         var cityResponse = coordResponse.name;
         $("#city-name").text(cityResponse);
 
-        
-
-
+        //Onecall weather
         var oneCallURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&exclude=hourly&appid=" + apiKey;
     $.ajax({
         url: oneCallURL,
@@ -52,6 +47,9 @@ function getCurrentWeather() {
         const currTime = moment().utcOffset(timezoneInMinutes).format("h:mm A");
         console.log(currTime);
         //TODO: get data I can use to show an icon of the weather conditions
+        var iconCode = response.current.weather[0].icon
+        var iconPath = "http://openweathermap.org/img/wn/" + iconCode + "@2x.png"
+        $("#weather-icon").attr('src', iconPath)
 
         //Show the current temperature
         var currentTemp = response.current.temp;
@@ -66,9 +64,28 @@ function getCurrentWeather() {
         var currentWind = response.current.wind_speed;
         $("#windspeed").text("Windspeed: " + currentWind + " mph");
 
+
+        
         //Show the UV Index
         var uvIdx = response.current.uvi;
+        console.log(uvIdx + "uv index")
+        var uvColor = ""
+        if (uvIdx >= "1" && uvIdx <= "2") {
+            uvColor = "green";
+        } else if (uvIdx >= "3" && uvIdx <= "5") {
+            uvColor = "orange";
+        } else if (uvIdx >= 6 && uvIdx <= 7) {
+            uvColor = "red";
+        } else if (uvIdx >= 8 && uvIdx <= 10) {
+            uvColor = "pink";
+        }
+        $("#uv").attr('background-color', uvColor)
         $("#uv").text("UV Index: " + uvIdx);
+        $("#uv").css("background-color", uvColor);
+        console.log(uvColor + "uvColor")
+
+
+            
     });
 
         //========================================================================
@@ -91,8 +108,7 @@ function getCurrentWeather() {
             for (let days = 1; days < 6; days++) {
                 var futureDate = (moment().add(days, 'days').format('M D YYYY').toString());
 
-                console.log(futureDate)
-                console.log(fiveDayArray[days])
+
 
 
                 //TODO: build the card
@@ -105,7 +121,11 @@ function getCurrentWeather() {
 
 
                 //TODO: Assign an icon to this day
-
+                var iconCodeFive = response.list[fiveDayArray[days]].weather[0].icon;
+                console.log(iconCodeFive + "icon code 5")
+                let iconFiveDay = $("<img>");
+                var iconPathFive = "http://openweathermap.org/img/wn/" + iconCodeFive + "@2x.png"
+                iconFiveDay.attr('src', iconPathFive)
 
                 // Assign the temperature to this day
                 var fiveDayTemp = response.list[fiveDayArray[days]].main.temp;
@@ -119,8 +139,8 @@ function getCurrentWeather() {
                 humidMaker.text("Humidity: " + fiveDayHumid + "%")
 
                 //     //TODO: Assign all elements to the div
-                divMaker.append(dateMaker, tempMaker, "<br>", humidMaker);
-                $("#five-day").append(divMaker);
+                divMaker.append(dateMaker, iconFiveDay, tempMaker, "<br>", humidMaker);
+                $("#five-day-id").append(divMaker);
             }
         })
 
@@ -159,6 +179,8 @@ $("#search-button").on("click", function(event) {
     renderCities();
     getCurrentWeather();
 })
+
+renderCities();
 
 
 

@@ -1,21 +1,23 @@
 h3 {
-    color: salmon;
     font-size: 24px;
 }
 
 #city-list-group {
     vertical-align: left;
-    background: chocolate;
+    background: rgb(180, 180, 179);
 }
 
 
 .current-weather {
-    background: lime;
+    border: 2px;
     vertical-align: right;
 }
 
 .five-day {
-    background: royalblue;
+    background: rgb(145, 165, 226);
+    margin-left: 2vw;
+    border: 2px;
+    border-radius: 5px;
 }
 
 .card-header {
@@ -26,6 +28,24 @@ p {
     font-size: 20px;
 }
 
+#temperature {
+    margin-left: 1vw;
+}
+
+#humidity {
+    margin-left: 1vw;
+}
+
+#windspeed {
+    margin-left: 1vw;
+}
+
+#uv {
+    width: 8vw;
+    border-radius: 5px;
+    margin-left: 1vw;
+}
+
 .card {
     margin: 1rem;
 }
@@ -34,13 +54,16 @@ p {
     padding: 0px;
     width: 5vw;
     margin: .5vw;
-    background-color: white;
+    border-radius: 5px;
+    background-color: rgb(161, 161, 161);
 }
 
 #five-day-id {
     background-color: white;
     padding: 0px;
+    border: 1px;
 }
+
 
 .list-group-item {
     color: salmon;
