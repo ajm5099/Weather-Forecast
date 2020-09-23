@@ -1,8 +1,17 @@
-.city-list {
+h3 {
+    color: salmon;
+    font-size: 24px;
 }
+
+#city-list-group {
+    vertical-align: left;
+    background: chocolate;
+}
+
 
 .current-weather {
     background: lime;
+    vertical-align: right;
 }
 
 .five-day {
@@ -19,4 +28,24 @@ p {
 
 .card {
     margin: 1rem;
+}
+
+.card-body {
+    padding: 0px;
+    width: 5vw;
+    margin: .5vw;
+    background-color: white;
+}
+
+#five-day-id {
+    background-color: white;
+    padding: 0px;
+}
+
+.list-group-item {
+    color: salmon;
+}
+
+.list-group-item-action {
+    color: salmon;
 }

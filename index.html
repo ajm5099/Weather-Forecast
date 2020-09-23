@@ -12,7 +12,7 @@
 
 <body>
 
-    <!-- This is where teh city search will go -->
+    <!-- This is where the city search will go -->
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Navbar</a>
@@ -21,52 +21,50 @@
 
     <div class="container">
         <div class="row">
-            <div col-md-3 class="city-list col-md-3">
-                <form id="cities-form">
-                    <label for="city-input">Search</label>
-                    <input type="text" id="cities-input">
-                    <input id="add-city" type="submit" value="add a city">
+            <div class="col-md-3 city-list" id="city-list-group">
+                <form id="search-form">
+                    <label for="searchfield" class="searchfield">Search</label>
+                    <input type="text" id="searchfield" name="searchfield">
+                    <input class="btn btn-primary" type="button" value="Search" id="search-button">
                     <div id="cities-view"></div>
                 </form>
                 <div id="city-list" class="list-group">
-                    <!-- <a class="list-group-item list-group-item-action" href="#list-item-1">Item 1</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">Item 2</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-3">Item 3</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-4">Item 4</a> -->
                 </div>
             </div>
-            <div col-md-9>
-                <div col-md-12 class="current-weather">
-                    <div class="card">
-                        <div class="card-header" id="city-name">
-                        </div>
-                        <div class="card-body">
-                            <p id="temperature"></p>
-                            <p id="humidity"></p>
-                            <p id="windspeed"></p>
-                            <p id="uv"></p>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-
-                <div col-md-12 class="five-day">
-                    <div class="row">
-                        <div col-md-12>
-                            <h1>5-Day Forecast:</h1>
+            <div class="col-md-8">
+                <div>
+                    <div class="col-md-12 current-weather ">
+                        <div class="card">
+                            <div class="card-header" id="city-name">
+                            </div>
+                            <div class="card-body-current">
+                                <p id="temperature"></p>
+                                <p id="humidity"></p>
+                                <p id="windspeed"></p>
+                                <p id="uv"></p>
+                                </blockquote>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="row" id="five-day">
+                    <div class="five-day col-md-12 ">
+                        <div class="row">
+                            <div col-md-12>
+                                <h1>5-Day Forecast:</h1>
+                            </div>
+                        </div>
+
+                        <div class="row" id="five-day"></div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
