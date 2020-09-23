@@ -12,7 +12,7 @@ var apiKey = "907c23e4987ec932c6e00aa83a52deef"
 //========================================================================
 function getCurrentWeather() {
 
-    var currentQueryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
+    var currentQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
     $.ajax({
         url: currentQueryURL,
         method: "GET"
@@ -44,7 +44,7 @@ function getCurrentWeather() {
         console.log(currTime);
         //TODO: get data I can use to show an icon of the weather conditions
         var iconCode = response.current.weather[0].icon
-        var iconPath = "http://openweathermap.org/img/wn/" + iconCode + "@2x.png"
+        var iconPath = "https://openweathermap.org/img/wn/" + iconCode + "@2x.png"
         $("#weather-icon").attr('src', iconPath)
 
         //Show the current temperature
@@ -84,7 +84,7 @@ function getCurrentWeather() {
         //========================================================================
 
         //the response for this shows the weather for every 3 hours. Figure out how to turn this response into a 5 day forecast.
-        var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=907c23e4987ec932c6e00aa83a52deef"
+        var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=907c23e4987ec932c6e00aa83a52deef"
 
         $.ajax({
             url: fiveDayURL,
@@ -111,7 +111,7 @@ function getCurrentWeather() {
                 var iconCodeFive = response.list[fiveDayArray[days]].weather[0].icon;
                 console.log(iconCodeFive + "icon code 5")
                 let iconFiveDay = $("<img>");
-                var iconPathFive = "http://openweathermap.org/img/wn/" + iconCodeFive + "@2x.png"
+                var iconPathFive = "https://openweathermap.org/img/wn/" + iconCodeFive + "@2x.png"
                 iconFiveDay.attr('src', iconPathFive)
 
                 // Assign the temperature to this day
