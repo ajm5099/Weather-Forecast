@@ -9,8 +9,6 @@ var keyCounter = 0
 var currentDate = moment().format('MMMM Do YYYY, h:mm a');
 var apiKey = "907c23e4987ec932c6e00aa83a52deef"
 
-
-
 //========================================================================
 // Current weather API call
 //========================================================================
@@ -64,8 +62,6 @@ function getCurrentWeather() {
         var currentWind = response.current.wind_speed;
         $("#windspeed").text("Windspeed: " + currentWind + " mph");
 
-
-        
         //Show the UV Index
         var uvIdx = response.current.uvi;
         console.log(uvIdx + "uv index")
@@ -82,10 +78,7 @@ function getCurrentWeather() {
         $("#uv").attr('background-color', uvColor)
         $("#uv").text("UV Index: " + uvIdx);
         $("#uv").css("background-color", uvColor);
-        console.log(uvColor + "uvColor")
-
-
-            
+        console.log(uvColor + "uvColor")    
     });
 
         //========================================================================
@@ -99,7 +92,7 @@ function getCurrentWeather() {
             url: fiveDayURL,
             method: "GET"
         }).then(function (response) {
-            $("#five-day").empty();
+            $("#five-day-id").empty();
             console.log(response)
             var fiveDayArray = ["0", "7", "14", "21", "28", "35"]
             var fiveIcon
@@ -108,19 +101,15 @@ function getCurrentWeather() {
             for (let days = 1; days < 6; days++) {
                 var futureDate = (moment().add(days, 'days').format('M D YYYY').toString());
 
-
-
-
-                //TODO: build the card
+                // build the card
                 let cardBuilder = $("<div class=\"card\" style=\"width: 4rem\">");
                 let divMaker = $("<div class=\"card-body\">");
                 
-                //TODO: Assign a date to this day
+                // Assign a date to this day
                 let dateMaker = $("<h3>")
                 dateMaker.text(futureDate);
 
-
-                //TODO: Assign an icon to this day
+                // Assign an icon to this day
                 var iconCodeFive = response.list[fiveDayArray[days]].weather[0].icon;
                 console.log(iconCodeFive + "icon code 5")
                 let iconFiveDay = $("<img>");
@@ -138,25 +127,20 @@ function getCurrentWeather() {
                 let humidMaker = $("<P>")
                 humidMaker.text("Humidity: " + fiveDayHumid + "%")
 
-                //     //TODO: Assign all elements to the div
+                //Assign all elements to the div
                 divMaker.append(dateMaker, iconFiveDay, tempMaker, "<br>", humidMaker);
                 $("#five-day-id").append(divMaker);
             }
         })
 
     });
-
-
-
-
 }
-
-
 
 //========================================================================
 // Searching for and adding cities
 //========================================================================
 
+//this builds the searched cities list
 function renderCities() {
     $("#city-list").empty();
     for (let i = 0; i < cities.length; i++) {
@@ -168,6 +152,7 @@ function renderCities() {
     }
 }
 
+//this is the search button
 $("#search-button").on("click", function(event) {
     event.preventDefault()
     var cityString = $("#searchfield").val().trim();
@@ -180,10 +165,20 @@ $("#search-button").on("click", function(event) {
     getCurrentWeather();
 })
 
-renderCities();
+//Taking the inpput from the searched cities list and re executing the search
+$("#city-list").on("click", function(event) {
+    city = ($(this).attr('id'))
+    renderCities()
+})
 
-
-
-//========================================================================
-// Applying data to the current forecast
-//========================================================================
+//using local storage to populate the page
+function renderMemory () {
+    for (let i = 0; i < 10; i++) {
+    var cityButton = $("<a>")
+        cityButton.addClass("w-75 p-3 list-group-item list-group-item-action")
+        cityButton.attr("id", cities[i]);
+        cityButton.text(localStorage.getItem(i))
+        $("#city-list").append(cityButton);
+    }
+}
+renderMemory();
