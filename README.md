@@ -1,4 +1,4 @@
-#### Weather Dashboard:
+# Weather Dashboard:
 livesite: https://ajm5099.github.io/Weather-Forecast/  
 
 ### Authors: 
