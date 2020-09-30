@@ -41,9 +41,9 @@ THEN I am presented with the last searched city forecast
 
 ## Screenshot of Website
 
-![Site Screenshot](images/full-application.png)
+![Site Screenshot](full-application.png)
 
-![Site Screenshot](images/weather-area.png)
+![Site Screenshot](weather-area.png)
 
 
 ## Resources and Technologies Used
